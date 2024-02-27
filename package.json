@@ -1,47 +1,31 @@
 {
-  "name": "@anjy7/rc4-test",
-  "version": "1.0.0",
-  "description": "",
+  "name": "npm-payload-test",
+  "version": "2.1.5",
   "type": "module",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "source": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
-    "storybook": "storybook dev",
-    "build": "rollup -c",
-    "npm:details": "npm pack --dry-run",
-    "npm:publish": "npm run build && npm publish --access public"
-  },
-  "keywords": [
-    "react",
-    "storybook",
-    "rollup",
-    "boilerplate"
-  ],
-  "author": "Anjaneya Gupta",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anjy7/npm-test.git"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": "20"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "update": "dotenv go run package/script.go",
+    "postinstall": "dotenv go run package/script.go",
+    "posti": "dotenv go run package/script.go",
+    "root": "node package/test.js",
+    "my-script": "bash scripts/getenv.sh"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.7",
-    "@babel/preset-react": "^7.23.3",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@storybook/react-vite": "^7.6.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.9.2",
-    "storybook": "^7.6.6"
+    "dotenv": "^16.4.5",
+    "microbundle": "^0.15.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anjy7/npm-test"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^7.3.0",
+    "findup": "^0.1.5"
   }
 }

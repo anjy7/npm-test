@@ -6,26 +6,12 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-	// "path/filepath"
-	// "io/ioutil"
-    // "github.com/joho/godotenv"
 )
 
-// func printStringCharacters(s string) {
-// 	for _, ch := range s {
-// 		fmt.Printf("%c ", ch)
-// 	}
-// 	fmt.Println()
-// }
 
 func main() {
-// 	err := godotenv.Load(".env")
-// if err != nil {
-//         log.Fatalf("Error loading environment variables file")
-//     }
-	// Specify the file path present in the PAYLOAD_CONFIG_PATH variable
-	// payloadConfigPath := os.Getenv("PAYLOAD_CONFIG_PATH")
-	
+
+	// get the root path of the project
 	cmd := exec.Command("bash","./package/getenv.sh")
     output, err := cmd.CombinedOutput()
     if err != nil {
@@ -34,7 +20,8 @@ func main() {
     }
     fmt.Println("Output:", string(output))
 
-	cmd2 := exec.Command("node","./package/test.js")
+	// run the node script to get the path of the payload.config.js file
+	cmd2 := exec.Command("node","./package/getConfig.js")
 	cmd2.Stdin = strings.NewReader(string(output))
 	fmt.Println("Input:", cmd2.Stdin)
     output1, err1 := cmd2.CombinedOutput()
@@ -43,31 +30,11 @@ func main() {
         return
     }
     fmt.Println("Output2:", string(output1))
-	fmt.Println("Output3:", cmd2)
-
-	// file1, err1 := os.Open("test.js")
-	// if err1 != nil {
-	// 	fmt.Println("Error opening file:", err)
-	// 	return
-	// }
-	// defer file1.Close()
 
 
 	payloadConfigPath := strings.TrimSpace(string(output1))
-	// payloadConfigPath := "C:\\Projects\\npm-test\\npm-test\\payload\\payload.config.ts"
-	// payloadConfigPath := "C:/Projects/npm-test/npm-test/payload/payload.config.ts"
-	
-	// payloadConfigPath := "C:/Projects/npm-test/npm-test/payload/payload.config.ts"
 
-	// if strings.TrimSpace(string(output1)) == payloadConfigPath {
-	// 	fmt.Println("Strings are equal")
-	// } else {
-	// 	fmt.Println("Strings are not equal")
-	// }
-
-	// fmt.Println("Shell:", os.Getenv("PAYLOAD_CONFIG_PATH"))
-
-
+	// open the payload.config.js file and add the user import and add user to the collections array
 	file, err := os.Open(payloadConfigPath)
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -124,4 +91,15 @@ func main() {
 	}
 
 	fmt.Println("User imported and added to collections array successfully.")
+
+	// run the node script to seed the data using local api
+	cmd3 := exec.Command("node","./package/seed/localApi.js")
+	// cmd3.Stdin = strings.NewReader(string(output1))
+	// fmt.Println("Input:", cmd3.Stdin)
+    output2, err2 := cmd3.CombinedOutput()
+    if err2 != nil {
+        fmt.Println("Error:", err2)
+        return
+    }
+    fmt.Println("Output2+:", string(output2))
 }

@@ -1,6 +1,6 @@
 {
   "name": "npm-payload-test",
-  "version": "2.1.5",
+  "version": "2.4.4",
   "type": "module",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
-    "microbundle": "^0.15.1"
+    "microbundle": "^0.15.1",
+    "payload": "^2.11.2"
   },
   "repository": {
     "type": "git",

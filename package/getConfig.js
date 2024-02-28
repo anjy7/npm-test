@@ -16,12 +16,12 @@ function loadEnv(stdin) {
     }
   }
 
-  // Check if the stdin starts with "/mnt" and construct the path accordingly
+  const driveLetter = stdin.charAt(5).toUpperCase(); // Assuming the drive letter is the character after "mnt/"
+  const input = stdin.substring(6);
+  const payloadConfigPath = dotenv.config({ path: `${driveLetter}:/${input}/.env` }).parsed.PAYLOAD_CONFIG_PATH;
+
+  //for windows
   if (stdin.startsWith("/mnt")) {
-    const driveLetter = stdin.charAt(5).toUpperCase(); // Assuming the drive letter is the character after "mnt/"
-    const payloadConfigPath = dotenv.config().parsed.PAYLOAD_CONFIG_PATH;
-    const input = stdin.substring(6);
-    // Return the concatenated path in one line
     return `${driveLetter}:${input}/${payloadConfigPath}`;
   }
 

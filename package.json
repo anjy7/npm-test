@@ -1,9 +1,9 @@
 {
   "name": "npm-payload-test",
-  "version": "2.4.4",
+  "version": "2.5.4",
   "type": "module",
-  "source": "src/index.js",
-  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "main": "dist/index.cjs",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "scripts": {

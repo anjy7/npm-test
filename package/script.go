@@ -46,7 +46,7 @@ func main() {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		if strings.Contains(line, `"../collections/user"`) {
+		if strings.Contains(line, `import Navbar from "npm-payload-test";`) {
 			continue
 		}
 		if strings.Contains(line, "collections:[") || strings.Contains(line, "collections: [") {
@@ -57,7 +57,7 @@ func main() {
 				idx = strings.Index(line, ": [")
 			}
 			if idx != -1 {
-				line = line[:idx+3] + "user," + line[idx+3:]
+				line = line[:idx+3] + "Navbar," + line[idx+3:]
 			}
 			
 			lines = append(lines, line)
@@ -73,7 +73,7 @@ func main() {
 		return
 	}
 
-	lines = append([]string{"import user from \"../collections/user\";"}, lines...)
+	lines = append([]string{`import Navbar from "npm-payload-test";`}, lines...)
 
 	updatedFile, err := os.Create(payloadConfigPath)
 	if err != nil {
@@ -92,14 +92,14 @@ func main() {
 
 	fmt.Println("User imported and added to collections array successfully.")
 
-	// run the node script to seed the data using local api
-	cmd3 := exec.Command("node","./package/seed/localApi.js")
-	// cmd3.Stdin = strings.NewReader(string(output1))
-	// fmt.Println("Input:", cmd3.Stdin)
-    output2, err2 := cmd3.CombinedOutput()
-    if err2 != nil {
-        fmt.Println("Error:", err2)
-        return
-    }
-    fmt.Println("Output2+:", string(output2))
+	// // run the node script to seed the data using local api
+	// cmd3 := exec.Command("node","./package/seed/localApi.js")
+	// // cmd3.Stdin = strings.NewReader(string(output1))
+	// // fmt.Println("Input:", cmd3.Stdin)
+    // output2, err2 := cmd3.CombinedOutput()
+    // if err2 != nil {
+    //     fmt.Println("Error:", err2)
+    //     return
+    // }
+    // fmt.Println("Output2+:", string(output2))
 }

@@ -1,7 +1,9 @@
-import path from 'path';
-import dotenv from 'dotenv';
-import fs from 'fs';
-
+// import path from 'path';
+// import dotenv from 'dotenv';
+// import fs from 'fs';
+const path = require("path");
+const dotenv = require("dotenv");
+const fs = require("fs");
 function loadEnv(stdin) {
   // Attempt to load .env file from the provided path
   const envPath = path.join(stdin, '.env');

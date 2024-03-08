@@ -28,7 +28,7 @@ function loadEnv(stdin) {
   }
 
   // Otherwise, join the stdin with the PAYLOAD_CONFIG_PATH and return it
-  return `${stdin}/${dotenv.config().parsed.PAYLOAD_CONFIG_PATH}`;
+  return `${stdin}/${dotenv.config({ path: envPath }).parsed.PAYLOAD_CONFIG_PATH}`;
 }
 
 // Read from stdin

@@ -1,6 +1,6 @@
 {
   "name": "npm-payload-test",
-  "version": "2.5.5",
+  "version": "2.5.7",
   "source": "src/index.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.module.js",

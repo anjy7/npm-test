@@ -1,4 +1,5 @@
 #!/bin/bash
 
 # set -ex
-git rev-parse --show-toplevel || echo .
+# git rev-parse --show-toplevel || echo .
+pwd
